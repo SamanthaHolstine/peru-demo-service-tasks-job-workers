@@ -1,7 +1,15 @@
 {
+  "name": "peru-demo",
+  "version": "1.0.0",
+  "description": "Ejemplo para demostrar el uso de Camunda 8, Service Tasks, Job Workers, y NodeJS SDK.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Samantha Holstine",
+  "license": "ISC",
   "dependencies": {
-    "@camunda8/sdk": "^8.6.15",
-    "@sendgrid/mail": "^8.1.4",
+    "@camunda8/sdk": "^8.6.6",
     "dotenv": "^16.4.5"
   }
 }
