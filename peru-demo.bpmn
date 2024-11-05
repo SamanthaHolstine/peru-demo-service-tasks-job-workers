@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="493cf3b" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <bpmn:process id="peru-demo" name="peru-demo" isExecutable="true">
+    <bpmn:extensionElements>
+      <zeebe:userTaskForm id="UserTaskForm_124oigl">{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.6.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "4a86467"
+  },
+  "schemaVersion": 17,
+  "id": "pedir-orden-1k2qdyl",
+  "components": [
+    {
+      "text": "# El Sito Mejor de Pedir Cosas!",
+      "type": "text",
+      "layout": {
+        "row": "Row_19flwzs",
+        "columns": null
+      },
+      "id": "Field_0uy0rdj"
+    },
+    {
+      "label": "Que Quieres Pedir?",
+      "values": [
+        {
+          "label": "Alfombra",
+          "value": "alfombra"
+        },
+        {
+          "label": "Teclado",
+          "value": "teclado"
+        },
+        {
+          "label": "Casa",
+          "value": "casa"
+        },
+        {
+          "label": "Taza",
+          "value": "taza"
+        }
+      ],
+      "type": "checklist",
+      "layout": {
+        "row": "Row_1lpx80r",
+        "columns": null
+      },
+      "id": "Field_0t9sfh3",
+      "key": "orden"
+    },
+    {
+      "label": "Nombre",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1wqdwa0",
+        "columns": null
+      },
+      "id": "Field_1t7a6do",
+      "key": "nombre"
+    },
+    {
+      "label": "Email",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0q7gk90",
+        "columns": null
+      },
+      "id": "Field_1d42yif",
+      "key": "email"
+    },
+    {
+      "label": "Dirección",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0od42h9",
+        "columns": null
+      },
+      "id": "Field_01yfopw",
+      "key": "direccion"
+    },
+    {
+      "label": "Ciudad",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1jkz60t",
+        "columns": null
+      },
+      "id": "Field_1xlac19",
+      "key": "ciudad"
+    },
+    {
+      "label": "País",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1jkz60t",
+        "columns": null
+      },
+      "id": "Field_09jcgwo",
+      "key": "pais"
+    },
+    {
+      "label": "Código Postal",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1jkz60t",
+        "columns": null
+      },
+      "id": "Field_06n90tb",
+      "key": "codigoPostal"
+    }
+  ],
+  "type": "default"
+}</zeebe:userTaskForm>
+    </bpmn:extensionElements>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1p06gfw</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0cw9b03" sourceRef="Gateway_02jv36r" targetRef="Activity_18zj3le" />
+    <bpmn:sequenceFlow id="Flow_075mrfd" sourceRef="Gateway_02jv36r" targetRef="Activity_0t236yd" />
+    <bpmn:sequenceFlow id="Flow_1aejgdz" sourceRef="Activity_18zj3le" targetRef="Gateway_1ixz4ap" />
+    <bpmn:sequenceFlow id="Flow_0fb3y4m" sourceRef="Activity_0t236yd" targetRef="Gateway_1ixz4ap" />
+    <bpmn:endEvent id="Event_1i6pqfn">
+      <bpmn:incoming>Flow_14958yy</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:parallelGateway id="Gateway_02jv36r">
+      <bpmn:incoming>Flow_0guff0o</bpmn:incoming>
+      <bpmn:outgoing>Flow_0cw9b03</bpmn:outgoing>
+      <bpmn:outgoing>Flow_075mrfd</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:parallelGateway id="Gateway_1ixz4ap">
+      <bpmn:incoming>Flow_1aejgdz</bpmn:incoming>
+      <bpmn:incoming>Flow_0fb3y4m</bpmn:incoming>
+      <bpmn:outgoing>Flow_15i9lth</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:serviceTask id="Activity_18zj3le" name="Procesar Pedido">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="procesarPedido" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0cw9b03</bpmn:incoming>
+      <bpmn:outgoing>Flow_1aejgdz</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_15i9lth" sourceRef="Gateway_1ixz4ap" targetRef="Activity_1kwol7n" />
+    <bpmn:sequenceFlow id="Flow_14958yy" sourceRef="Activity_1kwol7n" targetRef="Event_1i6pqfn" />
+    <bpmn:boundaryEvent id="Event_1yo5ud2" attachedToRef="Activity_0t236yd">
+      <bpmn:outgoing>Flow_1odg09b</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_0e44ply" errorRef="Error_13gy4n5" />
+    </bpmn:boundaryEvent>
+    <bpmn:endEvent id="Event_0k536ag">
+      <bpmn:incoming>Flow_134yl2t</bpmn:incoming>
+      <bpmn:terminateEventDefinition id="TerminateEventDefinition_0r60gwj" />
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0oep9vj" sourceRef="Activity_19p6arl" targetRef="Activity_0cn4qwq" />
+    <bpmn:boundaryEvent id="Event_1gzxe9r" attachedToRef="Activity_18zj3le">
+      <bpmn:outgoing>Flow_0pphni8</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_1omjyvs" errorRef="Error_0tg1gxc" />
+    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="Flow_0pphni8" sourceRef="Event_1gzxe9r" targetRef="Activity_1e9aaer" />
+    <bpmn:serviceTask id="Activity_0t236yd" name="Cargar Cuenta">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="cargarCuenta" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_075mrfd</bpmn:incoming>
+      <bpmn:outgoing>Flow_0fb3y4m</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0cn4qwq" name="Cancelar pedido">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="cancelarPedido" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0oep9vj</bpmn:incoming>
+      <bpmn:outgoing>Flow_134yl2t</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_1e9aaer" name="Enviar error" zeebe:modelerTemplate="io.camunda.connectors.SendGrid.v2" zeebe:modelerTemplateVersion="3" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0wLjI4NTcwNiA1LjQwODQ3SDUuNDM4MzdWMTAuNTYxMUgwLjI4NTcwNlY1LjQwODQ3WiIgZmlsbD0id2hpdGUiLz4KICAgIDxwYXRoIGQ9Ik0wLjI4NTcwNiA1LjQwODQ3SDUuNDM4MzdWMTAuNTYxMUgwLjI4NTcwNlY1LjQwODQ3WiIgZmlsbD0iIzk5RTFGNCIvPgogICAgPHBhdGggZD0iTTUuNDM4MzcgMTAuNTYxMUwxMC41NjExIDEwLjU2MTZWMTUuNjg0NEg1LjQzODM3VjEwLjU2MTFaIiBmaWxsPSJ3aGl0ZSIvPgogICAgPHBhdGggZD0iTTUuNDM4MzcgMTAuNTYxMUwxMC41NjExIDEwLjU2MTZWMTUuNjg0NEg1LjQzODM3VjEwLjU2MTFaIiBmaWxsPSIjOTlFMUY0Ii8+CiAgICA8cGF0aCBkPSJNMC4yODU3MDYgMTUuNjg0Nkw1LjQzODM3IDE1LjY4NDRWMTUuNzE0M0gwLjI4NTcwNlYxNS42ODQ2Wk0wLjI4NTcwNiAxMC41NjE5SDUuNDM4MzdWMTUuNjg0NEwwLjI4NTcwNiAxNS42ODQ2VjEwLjU2MTlaIiBmaWxsPSIjMUE4MkUyIi8+CiAgICA8cGF0aCBkPSJNNS40MzgzNyAwLjI4NTcwNkgxMC41NjExVjUuNDA4NDdINS40MzgzN1YwLjI4NTcwNlpNMTAuNTYxNiA1LjQzODM3SDE1LjcxNDNWMTAuNTYxMUgxMC41NjE2VjUuNDM4MzdaIiBmaWxsPSIjMDBCM0UzIi8+CiAgICA8cGF0aCBkPSJNNS40MzgzNyAxMC41NjExTDEwLjU2MTEgMTAuNTYxNlY1LjQwODQ3SDUuNDM4MzdWMTAuNTYxMVoiIGZpbGw9IiMwMDlERDkiLz4KICAgIDxwYXRoIGQ9Ik0xMC41NjExIDAuMjg1NzA2SDE1LjcxNDNWNS40MDg0N0gxMC41NjExVjAuMjg1NzA2WiIgZmlsbD0iIzFBODJFMiIvPgogICAgPHBhdGggZD0iTTEwLjU2MTEgNS40MDg0N0gxNS43MTQzVjUuNDM4MzdIMTAuNTYxNkwxMC41NjExIDUuNDA4NDdaIiBmaWxsPSIjMUE4MkUyIi8+Cjwvc3ZnPg==">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda:sendgrid:1" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="{{secrets.SendGrid}}" target="apiKey" />
+          <zeebe:input source="Samantha @ Camunda Devrel" target="from.name" />
+          <zeebe:input source="samantha.holstine@camunda.com" target="from.email" />
+          <zeebe:input source="=nombre" target="to.name" />
+          <zeebe:input source="=email" target="to.email" />
+          <zeebe:input source="mail" target="unMappedFieldNotUseInModel.mailType" />
+          <zeebe:input source="Error en Tu Pedido " target="content.subject" />
+          <zeebe:input source="text/plain" target="content.type" />
+          <zeebe:input source="Hay un error en el proceso de tu pedido. Necesitamos cancelar tu pedido!" target="content.value" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0pphni8</bpmn:incoming>
+      <bpmn:outgoing>Flow_069d4yn</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_1kwol7n" name="Enviar Confirmación" zeebe:modelerTemplate="io.camunda.connectors.SendGrid.v2" zeebe:modelerTemplateVersion="3" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0wLjI4NTcwNiA1LjQwODQ3SDUuNDM4MzdWMTAuNTYxMUgwLjI4NTcwNlY1LjQwODQ3WiIgZmlsbD0id2hpdGUiLz4KICAgIDxwYXRoIGQ9Ik0wLjI4NTcwNiA1LjQwODQ3SDUuNDM4MzdWMTAuNTYxMUgwLjI4NTcwNlY1LjQwODQ3WiIgZmlsbD0iIzk5RTFGNCIvPgogICAgPHBhdGggZD0iTTUuNDM4MzcgMTAuNTYxMUwxMC41NjExIDEwLjU2MTZWMTUuNjg0NEg1LjQzODM3VjEwLjU2MTFaIiBmaWxsPSJ3aGl0ZSIvPgogICAgPHBhdGggZD0iTTUuNDM4MzcgMTAuNTYxMUwxMC41NjExIDEwLjU2MTZWMTUuNjg0NEg1LjQzODM3VjEwLjU2MTFaIiBmaWxsPSIjOTlFMUY0Ii8+CiAgICA8cGF0aCBkPSJNMC4yODU3MDYgMTUuNjg0Nkw1LjQzODM3IDE1LjY4NDRWMTUuNzE0M0gwLjI4NTcwNlYxNS42ODQ2Wk0wLjI4NTcwNiAxMC41NjE5SDUuNDM4MzdWMTUuNjg0NEwwLjI4NTcwNiAxNS42ODQ2VjEwLjU2MTlaIiBmaWxsPSIjMUE4MkUyIi8+CiAgICA8cGF0aCBkPSJNNS40MzgzNyAwLjI4NTcwNkgxMC41NjExVjUuNDA4NDdINS40MzgzN1YwLjI4NTcwNlpNMTAuNTYxNiA1LjQzODM3SDE1LjcxNDNWMTAuNTYxMUgxMC41NjE2VjUuNDM4MzdaIiBmaWxsPSIjMDBCM0UzIi8+CiAgICA8cGF0aCBkPSJNNS40MzgzNyAxMC41NjExTDEwLjU2MTEgMTAuNTYxNlY1LjQwODQ3SDUuNDM4MzdWMTAuNTYxMVoiIGZpbGw9IiMwMDlERDkiLz4KICAgIDxwYXRoIGQ9Ik0xMC41NjExIDAuMjg1NzA2SDE1LjcxNDNWNS40MDg0N0gxMC41NjExVjAuMjg1NzA2WiIgZmlsbD0iIzFBODJFMiIvPgogICAgPHBhdGggZD0iTTEwLjU2MTEgNS40MDg0N0gxNS43MTQzVjUuNDM4MzdIMTAuNTYxNkwxMC41NjExIDUuNDA4NDdaIiBmaWxsPSIjMUE4MkUyIi8+Cjwvc3ZnPg==">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda:sendgrid:1" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="{{secrets.SendGrid}}" target="apiKey" />
+          <zeebe:input source="Samantha @ Camunda Devrel" target="from.name" />
+          <zeebe:input source="samantha.holstine@camunda.com" target="from.email" />
+          <zeebe:input source="=nombre" target="to.name" />
+          <zeebe:input source="=email" target="to.email" />
+          <zeebe:input source="mail" target="unMappedFieldNotUseInModel.mailType" />
+          <zeebe:input source="Confirmación de Tu Pedido" target="content.subject" />
+          <zeebe:input source="text/plain" target="content.type" />
+          <zeebe:input source="=&#34;Hola &#34; + nombre + &#34;,\n El pedido esta confirmado!\n\n Dirección:\n&#34; + direccion + &#34;\n&#34; + ciudad + &#34;, &#34; + pais + &#34;\n\n Artículos:\n&#34; + (string join(orden, &#34;\n&#34;))" target="content.value" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="resultVariable" value="response" />
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_15i9lth</bpmn:incoming>
+      <bpmn:outgoing>Flow_14958yy</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_19p6arl" name="Enviar Cancelación" zeebe:modelerTemplate="io.camunda.connectors.SendGrid.v2" zeebe:modelerTemplateVersion="3" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0wLjI4NTcwNiA1LjQwODQ3SDUuNDM4MzdWMTAuNTYxMUgwLjI4NTcwNlY1LjQwODQ3WiIgZmlsbD0id2hpdGUiLz4KICAgIDxwYXRoIGQ9Ik0wLjI4NTcwNiA1LjQwODQ3SDUuNDM4MzdWMTAuNTYxMUgwLjI4NTcwNlY1LjQwODQ3WiIgZmlsbD0iIzk5RTFGNCIvPgogICAgPHBhdGggZD0iTTUuNDM4MzcgMTAuNTYxMUwxMC41NjExIDEwLjU2MTZWMTUuNjg0NEg1LjQzODM3VjEwLjU2MTFaIiBmaWxsPSJ3aGl0ZSIvPgogICAgPHBhdGggZD0iTTUuNDM4MzcgMTAuNTYxMUwxMC41NjExIDEwLjU2MTZWMTUuNjg0NEg1LjQzODM3VjEwLjU2MTFaIiBmaWxsPSIjOTlFMUY0Ii8+CiAgICA8cGF0aCBkPSJNMC4yODU3MDYgMTUuNjg0Nkw1LjQzODM3IDE1LjY4NDRWMTUuNzE0M0gwLjI4NTcwNlYxNS42ODQ2Wk0wLjI4NTcwNiAxMC41NjE5SDUuNDM4MzdWMTUuNjg0NEwwLjI4NTcwNiAxNS42ODQ2VjEwLjU2MTlaIiBmaWxsPSIjMUE4MkUyIi8+CiAgICA8cGF0aCBkPSJNNS40MzgzNyAwLjI4NTcwNkgxMC41NjExVjUuNDA4NDdINS40MzgzN1YwLjI4NTcwNlpNMTAuNTYxNiA1LjQzODM3SDE1LjcxNDNWMTAuNTYxMUgxMC41NjE2VjUuNDM4MzdaIiBmaWxsPSIjMDBCM0UzIi8+CiAgICA8cGF0aCBkPSJNNS40MzgzNyAxMC41NjExTDEwLjU2MTEgMTAuNTYxNlY1LjQwODQ3SDUuNDM4MzdWMTAuNTYxMVoiIGZpbGw9IiMwMDlERDkiLz4KICAgIDxwYXRoIGQ9Ik0xMC41NjExIDAuMjg1NzA2SDE1LjcxNDNWNS40MDg0N0gxMC41NjExVjAuMjg1NzA2WiIgZmlsbD0iIzFBODJFMiIvPgogICAgPHBhdGggZD0iTTEwLjU2MTEgNS40MDg0N0gxNS43MTQzVjUuNDM4MzdIMTAuNTYxNkwxMC41NjExIDUuNDA4NDdaIiBmaWxsPSIjMUE4MkUyIi8+Cjwvc3ZnPg==">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda:sendgrid:1" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="{{secrets.SendGrid}}" target="apiKey" />
+          <zeebe:input source="Samantha @ Camunda Devrel" target="from.name" />
+          <zeebe:input source="samantha.holstine@camunda.com" target="from.email" />
+          <zeebe:input source="=nombre" target="to.name" />
+          <zeebe:input source="=email" target="to.email" />
+          <zeebe:input source="mail" target="unMappedFieldNotUseInModel.mailType" />
+          <zeebe:input source="Error en Tu Pedido" target="content.subject" />
+          <zeebe:input source="text/plain" target="content.type" />
+          <zeebe:input source="Hay un error en cargar tu cuenta. Necesitamos cancelar tu pedido!" target="content.value" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1odg09b</bpmn:incoming>
+      <bpmn:outgoing>Flow_0oep9vj</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0pqaivr" name="Cancelar pedido">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="cancelarPedido" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_069d4yn</bpmn:incoming>
+      <bpmn:outgoing>Flow_1fwhjc6</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1fwhjc6" sourceRef="Activity_0pqaivr" targetRef="Event_1u5xr0h" />
+    <bpmn:sequenceFlow id="Flow_069d4yn" sourceRef="Activity_1e9aaer" targetRef="Activity_0pqaivr" />
+    <bpmn:endEvent id="Event_1u5xr0h">
+      <bpmn:incoming>Flow_1fwhjc6</bpmn:incoming>
+      <bpmn:terminateEventDefinition id="TerminateEventDefinition_0l11dkc" />
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_134yl2t" sourceRef="Activity_0cn4qwq" targetRef="Event_0k536ag" />
+    <bpmn:sequenceFlow id="Flow_1odg09b" sourceRef="Event_1yo5ud2" targetRef="Activity_19p6arl" />
+    <bpmn:sequenceFlow id="Flow_1p06gfw" sourceRef="StartEvent_1" targetRef="Activity_0a9j4um" />
+    <bpmn:sequenceFlow id="Flow_0guff0o" sourceRef="Activity_0a9j4um" targetRef="Gateway_02jv36r" />
+    <bpmn:userTask id="Activity_0a9j4um" name="Pedir Orden">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:UserTaskForm_124oigl" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1p06gfw</bpmn:incoming>
+      <bpmn:outgoing>Flow_0guff0o</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmn:error id="Error_0tg1gxc" name="errorProcesarPedido" errorCode="errorProcesarPedido" />
+  <bpmn:error id="Error_13gy4n5" name="errorCargarCuenta" errorCode="errorCargarCuenta" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="peru-demo-no-for">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="340" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1i6pqfn_di" bpmnElement="Event_1i6pqfn">
+        <dc:Bounds x="942" y="340" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1nyvkti_di" bpmnElement="Gateway_02jv36r">
+        <dc:Bounds x="405" y="333" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_10xwmvg_di" bpmnElement="Gateway_1ixz4ap">
+        <dc:Bounds x="665" y="333" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0qzttt7_di" bpmnElement="Activity_18zj3le">
+        <dc:Bounds x="510" y="200" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0gicbxh_di" bpmnElement="Event_0k536ag">
+        <dc:Bounds x="942" y="572" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0b59eu1_di" bpmnElement="Activity_0t236yd">
+        <dc:Bounds x="510" y="430" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1vp1bqm_di" bpmnElement="Activity_0cn4qwq">
+        <dc:Bounds x="780" y="550" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1iy0rsx_di" bpmnElement="Activity_1e9aaer">
+        <dc:Bounds x="630" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0w19e44_di" bpmnElement="Activity_1kwol7n">
+        <dc:Bounds x="780" y="318" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0fwg4km_di" bpmnElement="Activity_19p6arl">
+        <dc:Bounds x="630" y="550" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_10dx3sa" bpmnElement="Activity_0pqaivr">
+        <dc:Bounds x="780" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0inegs8_di" bpmnElement="Event_1u5xr0h">
+        <dc:Bounds x="942" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_14y5j0t_di" bpmnElement="Activity_0a9j4um">
+        <dc:Bounds x="240" y="318" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1gzxe9r_di" bpmnElement="Event_1gzxe9r">
+        <dc:Bounds x="542" y="182" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_092wdam_di" bpmnElement="Event_1yo5ud2">
+        <dc:Bounds x="542" y="492" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0cw9b03_di" bpmnElement="Flow_0cw9b03">
+        <di:waypoint x="430" y="333" />
+        <di:waypoint x="430" y="240" />
+        <di:waypoint x="510" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_075mrfd_di" bpmnElement="Flow_075mrfd">
+        <di:waypoint x="430" y="383" />
+        <di:waypoint x="430" y="470" />
+        <di:waypoint x="510" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1aejgdz_di" bpmnElement="Flow_1aejgdz">
+        <di:waypoint x="610" y="240" />
+        <di:waypoint x="690" y="240" />
+        <di:waypoint x="690" y="333" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fb3y4m_di" bpmnElement="Flow_0fb3y4m">
+        <di:waypoint x="610" y="470" />
+        <di:waypoint x="690" y="470" />
+        <di:waypoint x="690" y="383" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15i9lth_di" bpmnElement="Flow_15i9lth">
+        <di:waypoint x="715" y="358" />
+        <di:waypoint x="780" y="358" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14958yy_di" bpmnElement="Flow_14958yy">
+        <di:waypoint x="880" y="358" />
+        <di:waypoint x="942" y="358" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0oep9vj_di" bpmnElement="Flow_0oep9vj">
+        <di:waypoint x="730" y="590" />
+        <di:waypoint x="780" y="590" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0pphni8_di" bpmnElement="Flow_0pphni8">
+        <di:waypoint x="560" y="182" />
+        <di:waypoint x="560" y="120" />
+        <di:waypoint x="630" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fwhjc6_di" bpmnElement="Flow_1fwhjc6">
+        <di:waypoint x="880" y="120" />
+        <di:waypoint x="942" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_069d4yn_di" bpmnElement="Flow_069d4yn">
+        <di:waypoint x="730" y="120" />
+        <di:waypoint x="780" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_134yl2t_di" bpmnElement="Flow_134yl2t">
+        <di:waypoint x="880" y="590" />
+        <di:waypoint x="942" y="590" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1odg09b_di" bpmnElement="Flow_1odg09b">
+        <di:waypoint x="560" y="528" />
+        <di:waypoint x="560" y="590" />
+        <di:waypoint x="630" y="590" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1p06gfw_di" bpmnElement="Flow_1p06gfw">
+        <di:waypoint x="188" y="358" />
+        <di:waypoint x="240" y="358" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0guff0o_di" bpmnElement="Flow_0guff0o">
+        <di:waypoint x="340" y="358" />
+        <di:waypoint x="405" y="358" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
