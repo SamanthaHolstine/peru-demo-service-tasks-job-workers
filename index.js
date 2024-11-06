@@ -12,7 +12,7 @@ const zeebe = camunda.getZeebeGrpcApiClient();
 try {
     async function deployProcess() {
         deploy = await zeebe.deployResource({
-            processFilename: path.join(process.cwd(), "peru-demo-no-for.bpmn"),
+            processFilename: path.join(process.cwd(), "peru-demo.bpmn"),
         });
         console.log(
             `[Zeebe] Proceso implementado: ${deploy.deployments[0].process.bpmnProcessId}`
@@ -33,7 +33,7 @@ async function main() {
 
         //Crear una instancia con el modelo arriba
         const p = await zeebe.createProcessInstance({
-            bpmnProcessId: `peru-demo-no-for`,
+            bpmnProcessId: `peru-demo-no`,
         });
         console.log(`[Zeebe] Finished Process Instance ${p.processInstanceKey}.`);
 
