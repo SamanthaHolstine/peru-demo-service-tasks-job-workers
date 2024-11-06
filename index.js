@@ -33,7 +33,7 @@ async function main() {
 
         //Crear una instancia con el modelo arriba
         const p = await zeebe.createProcessInstance({
-            bpmnProcessId: `peru-demo-no`,
+            bpmnProcessId: `peru-demo`,
         });
         console.log(`[Zeebe] Finished Process Instance ${p.processInstanceKey}.`);
 
